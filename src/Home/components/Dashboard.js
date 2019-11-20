@@ -19,13 +19,11 @@ class Dashboard extends Component {
                   <Nav.Link href="#series">Series</Nav.Link>
                   <Nav.Link href="#actors">Acteurs</Nav.Link>
                 </Nav>
-                <Form inline>
-                  <FormControl type="text" placeholder="Search" className="mr-sm-2"/>
-                  <Button variant="outline-success">Search</Button>
-                </Form>
+                <Button variant="outline-info">Se connecter</Button>
               </Navbar.Collapse>
             </Navbar>
             <Navbar bg="light" expand="lg" className="fixed-top top2">
+            <Navbar.Brand>Catégories</Navbar.Brand>
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
                   <Nav.Link href="#action">Action</Nav.Link>
@@ -34,6 +32,10 @@ class Dashboard extends Component {
                   <Nav.Link href="#crime">Policier</Nav.Link>
                   <Nav.Link href="#comedies">Comedie</Nav.Link>
                 </Nav>
+                <Form inline>
+                  <FormControl type="text" placeholder="Search" className="mr-sm-2"/>
+                  <Button variant="outline-success">Search</Button>
+                </Form>
               </Navbar.Collapse>
             </Navbar>
           </nav>
