@@ -8,7 +8,7 @@ const Login = () => {
     <h2 className="display-2">Connexion</h2>
     <div class="row">
       <div class="col-md-12 form-group">
-        <input type="text" class="form-control" placeholder="Nom"/>
+        <input type="text" class="form-control" placeholder="Login"/>
       </div>
     </div>
     <div class="row">
@@ -19,9 +19,14 @@ const Login = () => {
     <div class="row">
       <div class="col-md-12 text-center">
         <div class="btn-group">
-          <Button href="/" className="btn-secondary">Retour</Button>
+          <Button href="/dashboard" className="btn-secondary">Retour</Button>
           <Button type="submit" className="btn-primary">Se connecter</Button>
         </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <Button href="/" variant="btn-sm">Créer un compte ?</Button>
       </div>
     </div>
   </div>

@@ -1,9 +1,26 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import React from 'react'
+import React, { Component } from 'react'
 import Card from '../../components/Card.js';
 import { Button, Navbar, Nav, Form, FormControl } from 'react-bootstrap'
+import AppStore from '../../store/AppStore'
+import SeriesAction from '../../Series/SeriesAction.js'
+// import SeriesDto from '../../Series/SeriesDto.js'
+// import PropTypes from 'prop-types'
+// import { connect } from 'react-redux'
 
-const Dashboard = () => {
+class Dashboard extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+        series: SeriesAction.fetchSeries()
+    }
+}
+
+  componentWillMount(){
+    // AppStore.dispatch(SeriesAction.fetchSeries())
+  }
+  render() {
+    console.log(this.state.series)
     return (
     <div>
       <header className="App-header">
@@ -19,8 +36,7 @@ const Dashboard = () => {
                   <Nav.Link href="#actors">Acteurs</Nav.Link>
                 </Nav>
                 <Form inline>
-                <Button href="/register" variant="outline-secondary" className="mr-sm-2">Créer un compte</Button>
-                <Button href="/login" variant="outline-info">Se connecter</Button>
+                <Button href="/" variant="outline-info">Se déconnecter</Button>
                 </Form>
               </Navbar.Collapse>
             </Navbar>
@@ -61,5 +77,13 @@ const Dashboard = () => {
     </div>
     )
   }
+}
+
+// Dashboard.propTypes = {
+//   series: PropTypes.instanceOf(SeriesDto),
+// }
+// const mapStateToProps = store => ({
+//   series: store.SeriesReducer.series,
+// })
 
 export default Dashboard
