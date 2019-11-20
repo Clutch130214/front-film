@@ -2,9 +2,25 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import React, { Component } from 'react'
 import Card from '../../components/Card.js';
 import { Button, Navbar, Nav, Form, FormControl } from 'react-bootstrap'
+import AppStore from '../../store/AppStore'
+import SeriesAction from '../../Series/SeriesAction.js'
+// import SeriesDto from '../../Series/SeriesDto.js'
+// import PropTypes from 'prop-types'
+// import { connect } from 'react-redux'
 
 class Dashboard extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+        series: SeriesAction.fetchSeries()
+    }
+}
+
+  componentWillMount(){
+    // AppStore.dispatch(SeriesAction.fetchSeries())
+  }
   render() {
+    console.log(this.state.series)
     return (
       <div>
         <header className="App-header">
@@ -47,5 +63,12 @@ class Dashboard extends Component {
     )
   }
 }
+
+// Dashboard.propTypes = {
+//   series: PropTypes.instanceOf(SeriesDto),
+// }
+// const mapStateToProps = store => ({
+//   series: store.SeriesReducer.series,
+// })
 
 export default Dashboard
