@@ -1,10 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import React, { Component } from 'react'
+import React from 'react'
 import Card from '../../components/Card.js';
 import { Button, Navbar, Nav, Form, FormControl } from 'react-bootstrap'
 
-class Dashboard extends Component {
-  render() {
+const Dashboard = () => {
     return (
     <div>
       <header className="App-header">
@@ -19,7 +18,10 @@ class Dashboard extends Component {
                   <Nav.Link href="#series">Series</Nav.Link>
                   <Nav.Link href="#actors">Acteurs</Nav.Link>
                 </Nav>
-                <Button variant="outline-info">Se connecter</Button>
+                <Form inline>
+                <Button href="/register" variant="outline-secondary" className="mr-sm-2">Créer un compte</Button>
+                <Button href="/login" variant="outline-info">Se connecter</Button>
+                </Form>
               </Navbar.Collapse>
             </Navbar>
             <Navbar bg="light" expand="lg" className="fixed-top top2">
@@ -32,6 +34,7 @@ class Dashboard extends Component {
                   <Nav.Link href="#crime">Policier</Nav.Link>
                   <Nav.Link href="#comedies">Comedie</Nav.Link>
                 </Nav>
+
                 <Form inline>
                   <FormControl type="text" placeholder="Search" className="mr-sm-2"/>
                   <Button variant="outline-success">Search</Button>
@@ -58,6 +61,5 @@ class Dashboard extends Component {
     </div>
     )
   }
-}
 
 export default Dashboard
