@@ -41,8 +41,6 @@ function App() {
       </div>
     </header>
     <Card/>
-    <Card/>
-    <Card/>
   </div>
   );
 }
