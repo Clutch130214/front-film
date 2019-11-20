@@ -6,8 +6,8 @@ class Card extends Component {
   render() {
     return (
     <div className="Card">
-      <div class="row justify-content-md-center">
-        <div class="col-md-9 col-xs-9">
+      <div className="row justify-content-md-center">
+        <div className="col-md-9 col-xs-9">
           <div className='card mb-3 h-60'>
             <div className='row no-gutters'>
               <div className='col-md-2'>
@@ -23,8 +23,8 @@ class Card extends Component {
           </div>
         </div>
       </div>
-      <div class="row justify-content-md-center">
-        <div class="col-md-9 col-xs-9">
+      <div className="row justify-content-md-center">
+        <div className="col-md-9 col-xs-9">
           <div className='card mb-3 h-60'>
             <div className='row no-gutters'>
               <div className='col-md-10'>
