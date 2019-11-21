@@ -3,10 +3,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 class Card extends Component {
-  render() {
+
+  getLeftCard(){
     return (
-    <div className="Card">
-      <div className="row justify-content-md-center">
+    <div className="row justify-content-md-center">
         <div className="col-md-9 col-xs-9">
           <div className='card mb-3 h-60'>
             <div className='row no-gutters'>
@@ -23,6 +23,11 @@ class Card extends Component {
           </div>
         </div>
       </div>
+    )
+  }
+
+  getRightCard(){
+    return (
       <div className="row justify-content-md-center">
         <div className="col-md-9 col-xs-9">
           <div className='card mb-3 h-60'>
@@ -40,7 +45,21 @@ class Card extends Component {
           </div>
         </div>
       </div>
-    </div>
+    )
+  }
+
+  getContent(){
+    switch(this.props.side){
+      case 'left': return this.getLeftCard()
+      case 'right': return this.getRightCard()
+      default: return this.getLeftCard()
+    }
+  }
+  render() {
+    return (
+      <div className="Card">
+        {this.getContent()}
+      </div>
     )
   }
 }
@@ -49,6 +68,7 @@ Card.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   img: PropTypes.string,
+  side: PropTypes.string,
 }
 
 export default Card

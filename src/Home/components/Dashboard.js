@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import React, { Component } from 'react'
 import Card from '../../components/Card.js';
-import { Button, Navbar, Nav, Form, FormControl } from 'react-bootstrap'
+import { Button, Navbar, Nav, Form, FormControl, ListGroup } from 'react-bootstrap'
 import AppStore from '../../store/AppStore'
 import SeriesAction from '../../Series/SeriesAction.js'
 // import SeriesDto from '../../Series/SeriesDto.js'
@@ -12,15 +12,39 @@ class Dashboard extends Component {
   constructor(props) {
     super(props)
     this.state = {
-        series: SeriesAction.fetchSeries()
+        series: [],
+        films: []
     }
 }
 
   componentWillMount(){
+    SeriesAction.fetchSeries().then(series => { this.setState({ series }) })
+    SeriesAction.fetchFilms().then(films => { this.setState({ films }) })
     // AppStore.dispatch(SeriesAction.fetchSeries())
   }
+
+  getSide(i){
+    if(i%2 === 0){
+      return 'right'
+    } else {
+      return 'left'
+    }
+  }
+
+  getSeriesList(){
+    return this.state.films.map(( s, i) => {
+      return (
+        <Card
+        title={s.nom}
+        description={s.description}
+        img={s.url}
+        side={this.getSide(i+1)}/>
+      )
+    })
+  }
+
   render() {
-    console.log(this.state.series)
+    console.log(this.state.films)
     return (
     <div>
       <header className="App-header">
@@ -61,18 +85,7 @@ class Dashboard extends Component {
         </div>
       </header>
       <div className="margin-card-top">
-        <Card
-        title={'Titre'}
-        description={'La description'}
-        img={'https://pourlamourdesmotsdotcom.files.wordpress.com/2019/07/capture-de28099c3a9cran-2019-07-12-c3a0-18.15.34.png'}/>
-        <Card
-        title={'Titre'}
-        description={'La description'}
-        img={'https://pourlamourdesmotsdotcom.files.wordpress.com/2019/07/capture-de28099c3a9cran-2019-07-12-c3a0-18.15.34.png'}/>
-        <Card
-        title={'Titre'}
-        description={'La description'}
-        img={'https://pourlamourdesmotsdotcom.files.wordpress.com/2019/07/capture-de28099c3a9cran-2019-07-12-c3a0-18.15.34.png'}/>
+          {this.getSeriesList()}
       </div>
     </div>
     )

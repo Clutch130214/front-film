@@ -4,22 +4,23 @@ import {
 } from './SeriesConstants'
 import ApplicationConf from '../conf/ApplicationConf'
 import * as APIConfig from '../conf/APIConfig'
+import { resolve } from 'dns'
 
 
 const SeriesAction = {
     
-    receiveSeries(series) {
-        return { type: RECEIVE_ALL_SERIES, series }
-    },
+    // receiveSeries(series) {
+    //     return { type: RECEIVE_ALL_SERIES, series }
+    // },
 
-    promiseSeries() {
-        return fetch(ApplicationConf.series.getAll(),
-        {
-            method: 'GET',
-            headers: APIConfig.HEADERS,
-        },
-        )
-    },
+    // promiseSeries() {
+    //     return fetch(ApplicationConf.series.getAll(),
+    //     {
+    //         method: 'GET',
+    //         headers: APIConfig.HEADERS,
+    //     },
+    //     )
+    // },
 
     // fetchSeries() {
     //     return dispatch => {
@@ -42,7 +43,7 @@ const SeriesAction = {
 
     fetchSeries() {
         return fetch(
-            ApplicationConf.series.getAll(),
+            ApplicationConf.serie.getAll(),
             {
                 method: 'GET',
                 headers: APIConfig.HEADERS,
@@ -52,10 +53,25 @@ const SeriesAction = {
                     throw new Error('Error - 404 Not Found')
                 }
                 return response.json().then(function(json) {
-                    const series = json.series
-                    console.log(series)
-                    return series
-            })
+                    return json.series
+                  })
+        })  
+    },
+
+    fetchFilms() {
+        return fetch(
+            ApplicationConf.film.getAll(),
+            {
+                method: 'GET',
+                headers: APIConfig.HEADERS,
+            },
+        ).then((response) => {
+                if (!response.ok) {
+                    throw new Error('Error - 404 Not Found')
+                }
+                return response.json().then(function(json) {
+                    return json.films
+                  })
         })  
     }
 }

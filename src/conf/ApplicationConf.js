@@ -1,8 +1,12 @@
 import * as APIConfig from './APIConfig'
 
 export default {
-    series: {
+    serie: {
         getAll: () => `${APIConfig.API_URI}/series`,
+    },
+
+    film: {
+        getAll: () => `${APIConfig.API_URI}/films`,
     }
 
 }

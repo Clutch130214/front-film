@@ -4,4 +4,4 @@ export const HEADERS = new Headers({
 	Accept: 'application/json',
 	Authorization: null,
 })
-export const API_URI = 'http://192.168.43.140:5000'
+export const API_URI = 'http://127.0.0.1:5000'
