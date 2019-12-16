@@ -7,6 +7,10 @@ export default {
 
     film: {
         getAll: () => `${APIConfig.API_URI}/films`,
+    },
+    
+    acteur: {
+        getAll: () => `${APIConfig.API_URI}/acteurs`,
     }
 
 }

@@ -1,9 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import React, { Component } from 'react'
 import Card from '../../components/Card.js';
-import { Button, Navbar, Nav, Form, FormControl, ListGroup } from 'react-bootstrap'
-import AppStore from '../../store/AppStore'
-import SeriesAction from '../../Series/SeriesAction.js'
+import { Button, Navbar, Nav, Form, FormControl } from 'react-bootstrap'
+import Action from '../../Series/Action.js'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCompactDisc, faFilm } from '@fortawesome/free-solid-svg-icons'
 // import SeriesDto from '../../Series/SeriesDto.js'
 // import PropTypes from 'prop-types'
 // import { connect } from 'react-redux'
@@ -13,13 +14,18 @@ class Dashboard extends Component {
     super(props)
     this.state = {
         series: [],
-        films: []
+        films: [],
+        acteurs: [],
+        data: [],
+        noneTitle: 'Aucun Films',
+        noneIcon: faFilm
     }
 }
 
   componentWillMount(){
-    SeriesAction.fetchSeries().then(series => { this.setState({ series }) })
-    SeriesAction.fetchFilms().then(films => { this.setState({ films }) })
+    Action.fetchSeries().then(series => { this.setState({ series }) })
+    Action.fetchFilms().then(films => { this.setState({ films: films, data: films })})
+    // Action.fetchActeurs().then(acteurs => { this.setState({ acteurs }) })
     // AppStore.dispatch(SeriesAction.fetchSeries())
   }
 
@@ -32,19 +38,38 @@ class Dashboard extends Component {
   }
 
   getSeriesList(){
-    return this.state.films.map(( s, i) => {
+    if(this.state.data.length){
+      return this.state.data.map(( s, i) => {
+        return (
+          <Card
+          title={s.nom}
+          description={s.description}
+          img={s.url}
+          side={this.getSide(i+1)}/>
+        )
+      })
+    }
+    else {
+      console.log(this.state.data)
       return (
-        <Card
-        title={s.nom}
-        description={s.description}
-        img={s.url}
-        side={this.getSide(i+1)}/>
+        <div style={{ textAlign: 'center', paddingTop: '100px'}}>
+            <FontAwesomeIcon icon={this.state.noneIcon} size="4x" />
+            <h1>{this.state.noneTitle}</h1>
+        </div>
       )
+    }
+  }
+
+  switchData(data, title, icon, selected){
+    this.setState({
+      data: data,  
+      noneTitle: title, 
+      noneIcon: icon,
+      selected: selected
     })
   }
 
   render() {
-    console.log(this.state.films)
     return (
     <div>
       <header className="App-header">
@@ -55,9 +80,9 @@ class Dashboard extends Component {
               <Navbar.Toggle aria-controls="basic-navbar-nav"/>
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                  <Nav.Link href="#home">Films</Nav.Link>
-                  <Nav.Link href="#series">Series</Nav.Link>
-                  <Nav.Link href="#actors">Acteurs</Nav.Link>
+                  <Nav.Link onClick={() => this.switchData(this.state.films,'Aucun Films', faFilm)}>Films</Nav.Link>
+                  <Nav.Link onClick={() => this.switchData(this.state.series, 'Aucune Series', faCompactDisc)}>Series</Nav.Link>
+                  {/* <Nav.Link onClick={() => this.setState({ data: this.state.acteurs })}href="#actors">Acteurs</Nav.Link> */}
                 </Nav>
                 <Form inline>
                 <Button href="/" variant="outline-info">Se déconnecter</Button>
@@ -68,6 +93,7 @@ class Dashboard extends Component {
             <Navbar.Brand>Catégories</Navbar.Brand>
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
+                  <Nav.Link href="#tous">Tous</Nav.Link>
                   <Nav.Link href="#action">Action</Nav.Link>
                   <Nav.Link href="#sciencefiction">Science-fiction</Nav.Link>
                   <Nav.Link href="#romantic">Romance</Nav.Link>

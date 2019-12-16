@@ -7,7 +7,7 @@ import * as APIConfig from '../conf/APIConfig'
 import { resolve } from 'dns'
 
 
-const SeriesAction = {
+const Action = {
     
     // receiveSeries(series) {
     //     return { type: RECEIVE_ALL_SERIES, series }
@@ -73,7 +73,24 @@ const SeriesAction = {
                     return json.films
                   })
         })  
+    },
+
+    fetchActeurs() {
+        return fetch(
+            ApplicationConf.acteur.getAll(),
+            {
+                method: 'GET',
+                headers: APIConfig.HEADERS,
+            },
+        ).then((response) => {
+                if (!response.ok) {
+                    throw new Error('Error - 404 Not Found')
+                }
+                return response.json().then(function(json) {
+                    return json.acteurs
+                  })
+        })  
     }
 }
 
-export default SeriesAction
+export default Action
