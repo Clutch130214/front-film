@@ -1,20 +1,20 @@
 'use strict'
 
 import {
-    RECEIVE_ALL_SERIES,
-} from './SeriesConstants'
+    RECEIVE_ALL_ACTEURS,
+} from './ActeursConstants'
 
 export const store = {
-    series: [],
+    acteurs: [],
 }
 
-export function SeriesReducer(state = {}, action) {
+export function ActeursReducer(state = {}, action) {
     switch (action.type) {
-        case RECEIVE_ALL_SERIES:
+        case RECEIVE_ALL_ACTEURS:
             console.log(action)
             return {
                 ...state,
-                series: action.series
+                acteurs: action.acteurs
             }
         default:
             return state

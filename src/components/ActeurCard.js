@@ -1,11 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Button } from 'react-bootstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInfo } from '@fortawesome/free-solid-svg-icons'
 
-class Card extends Component {
+class ActeurCard extends Component {
 
   getLeftCard(){
     return (
@@ -18,9 +15,8 @@ class Card extends Component {
               </div>
               <div className='col-md-10'>
                 <div className='card-body'>
+                  <p className='card-text'>{this.props.obj.prenom}</p>
                   <h5 className='card-title'>{this.props.obj.nom}</h5>
-                  <p className='card-text'>{this.props.obj.description}</p>
-                  <Button variant="primary"><FontAwesomeIcon icon={faInfo} size="2x" /></Button>
                 </div>
               </div>
             </div>
@@ -38,9 +34,8 @@ class Card extends Component {
             <div className='row no-gutters'>
               <div className='col-md-10'>
                 <div className='card-body'>
+                    <p className='card-text'>{this.props.obj.prenom}</p>
                     <h5 className='card-title'>{this.props.obj.nom}</h5>
-                  <p className='card-text'>{this.props.obj.description}</p>
-                  <Button variant="primary"><FontAwesomeIcon icon={faInfo} size="2x" /></Button>
                 </div>
               </div>
               <div className='col-md-2'>
@@ -69,9 +64,9 @@ class Card extends Component {
   }
 }
 
-Card.propTypes = {
+ActeurCard.propTypes = {
   obj: PropTypes.object,
   side: PropTypes.string,
 }
 
-export default Card
+export default ActeurCard

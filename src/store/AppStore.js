@@ -1,10 +1,19 @@
-import { SeriesReducer } from '../Series/SeriesReducer'
-import { createStore, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
+import { SeriesReducer, store as SeriesReducerStore } from '../Series/SeriesReducer'
+import { FilmsReducer, store as FilmsReducerStore } from '../Films/FilmsReducer'
+import { ActeursReducer, store as ActeursReducerStore } from '../Acteurs/ActeursReducer'
+import { createStore, combineReducers } from 'redux'
 
-const AppStore = createStore (
+const rootReducer = combineReducers({
     SeriesReducer,
-    applyMiddleware(thunk)
+    FilmsReducer,
+    ActeursReducer
+})
+
+const AppStore = createStore (rootReducer, {
+    SeriesReducer : SeriesReducerStore,
+    FilmsReducer : FilmsReducerStore,
+    ActeursReducer : ActeursReducerStore,
+    }
 )
 
 export default AppStore

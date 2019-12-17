@@ -1,32 +1,33 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import React, { Component } from 'react'
 import Card from '../../components/Card.js';
-import { Button, Navbar, Nav, Form, FormControl } from 'react-bootstrap'
-import Action from '../../Series/Action.js'
+import ActeurCard from '../../components/ActeurCard.js';
+import { Button, Navbar, Nav, Form, FormControl, Dropdown, DropdownButton } from 'react-bootstrap'
+import SeriesAction from '../../Series/SeriesAction.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCompactDisc, faFilm } from '@fortawesome/free-solid-svg-icons'
-// import SeriesDto from '../../Series/SeriesDto.js'
-// import PropTypes from 'prop-types'
-// import { connect } from 'react-redux'
+import { faCompactDisc, faFilm, faUserTie} from '@fortawesome/free-solid-svg-icons'
+import AppStore from '../../store/AppStore.js'
+import FilmsAction from '../../Films/FilmsAction.js'
+import ActeursAction from '../../Acteurs/ActeursAction.js'
+import {
+  FILM, SERIE, ACTEUR
+} from '../constant/HomeConstant'
 
 class Dashboard extends Component {
   constructor(props) {
     super(props)
     this.state = {
-        series: [],
-        films: [],
-        acteurs: [],
         data: [],
         noneTitle: 'Aucun Films',
-        noneIcon: faFilm
+        noneIcon: faFilm,
+        show: false,
+        dataLoaded: false,
+        selected: 'film'
     }
 }
 
   componentWillMount(){
-    Action.fetchSeries().then(series => { this.setState({ series }) })
-    Action.fetchFilms().then(films => { this.setState({ films: films, data: films })})
-    // Action.fetchActeurs().then(acteurs => { this.setState({ acteurs }) })
-    // AppStore.dispatch(SeriesAction.fetchSeries())
+    FilmsAction.fetchFilms(() => {this.setState({  data: AppStore.getState().FilmsReducer.films, dataLoaded: true })})
   }
 
   getSide(i){
@@ -37,36 +38,63 @@ class Dashboard extends Component {
     }
   }
 
-  getSeriesList(){
+  getDataList(){
     if(this.state.data.length){
-      return this.state.data.map(( s, i) => {
+      return this.state.data.map((d, i) => {
         return (
-          <Card
-          title={s.nom}
-          description={s.description}
-          img={s.url}
-          side={this.getSide(i+1)}/>
+          <div>
+            {
+              this.state.selected != ACTEUR ?
+              <Card obj={d} side={this.getSide(i+1)}/>
+              :
+              <ActeurCard obj={d} side={this.getSide(i+1)}/>
+            }
+          </div>
         )
       })
     }
     else {
-      console.log(this.state.data)
       return (
         <div style={{ textAlign: 'center', paddingTop: '100px'}}>
-            <FontAwesomeIcon icon={this.state.noneIcon} size="4x" />
-            <h1>{this.state.noneTitle}</h1>
+          {this.state.dataLoaded ?
+            <div>
+              <FontAwesomeIcon icon={this.state.noneIcon} size="4x" />
+              <h1>{this.state.noneTitle}</h1>
+            </div>
+          :
+          <div>
+          <img src='https://gifimage.net/wp-content/uploads/2018/11/gif-clap-cin%C3%A9ma-7.gif' className='card-img img-responsive' alt='...' style={{ width: '10%'}}/>
+          </div>}
         </div>
       )
     }
   }
 
-  switchData(data, title, icon, selected){
-    this.setState({
-      data: data,  
+  getFilms(title, icon, selected){
+    FilmsAction.fetchFilms(() => {this.setState({
+      data: AppStore.getState().FilmsReducer.films,
       noneTitle: title, 
       noneIcon: icon,
       selected: selected
-    })
+    })})
+  }
+
+  getSeries(title, icon, selected){
+    SeriesAction.fetchSeries(() => {this.setState({
+      data: AppStore.getState().SeriesReducer.series, 
+      noneTitle: title, 
+      noneIcon: icon,
+      selected: selected
+    })})
+  }
+
+  getActeurs(title, icon, selected){
+    ActeursAction.fetchActeurs(() => {this.setState({
+      data: AppStore.getState().ActeursReducer.acteurs, 
+      noneTitle: title, 
+      noneIcon: icon,
+      selected: selected
+    })})
   }
 
   render() {
@@ -80,9 +108,9 @@ class Dashboard extends Component {
               <Navbar.Toggle aria-controls="basic-navbar-nav"/>
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                  <Nav.Link onClick={() => this.switchData(this.state.films,'Aucun Films', faFilm)}>Films</Nav.Link>
-                  <Nav.Link onClick={() => this.switchData(this.state.series, 'Aucune Series', faCompactDisc)}>Series</Nav.Link>
-                  {/* <Nav.Link onClick={() => this.setState({ data: this.state.acteurs })}href="#actors">Acteurs</Nav.Link> */}
+                  <Nav.Link onClick={() => this.getFilms('Aucun Films', faFilm, FILM)}>Films</Nav.Link>
+                  <Nav.Link onClick={() => this.getSeries('Aucune Series', faCompactDisc, SERIE)}>Series</Nav.Link>
+                  <Nav.Link onClick={() => this.getActeurs('Aucun Acteurs', faUserTie, ACTEUR)}>Acteurs</Nav.Link>
                 </Nav>
                 <Form inline>
                 <Button href="/" variant="outline-info">Se déconnecter</Button>
@@ -90,15 +118,21 @@ class Dashboard extends Component {
               </Navbar.Collapse>
             </Navbar>
             <Navbar bg="light" expand="lg" className="fixed-top top2">
-            <Navbar.Brand>Catégories</Navbar.Brand>
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                  <Nav.Link href="#tous">Tous</Nav.Link>
-                  <Nav.Link href="#action">Action</Nav.Link>
-                  <Nav.Link href="#sciencefiction">Science-fiction</Nav.Link>
-                  <Nav.Link href="#romantic">Romance</Nav.Link>
-                  <Nav.Link href="#crime">Policier</Nav.Link>
-                  <Nav.Link href="#comedies">Comedie</Nav.Link>
+                    <DropdownButton
+                      drop={'right'}
+                      variant="success"
+                      title={'Catégories'}
+                      id={'dropdown-button-drop-right'}
+                      key={'right'}>
+                    <Dropdown.Item eventKey="1">Tous</Dropdown.Item>
+                    <Dropdown.Item eventKey="2">Action</Dropdown.Item>
+                    <Dropdown.Item eventKey="3">Science-fiction</Dropdown.Item>
+                    <Dropdown.Item eventKey="3">Romance</Dropdown.Item>
+                    <Dropdown.Item eventKey="3">Policier</Dropdown.Item>
+                    <Dropdown.Item eventKey="3">Comedie</Dropdown.Item>
+                  </DropdownButton>
                 </Nav>
 
                 <Form inline>
@@ -111,18 +145,11 @@ class Dashboard extends Component {
         </div>
       </header>
       <div className="margin-card-top">
-          {this.getSeriesList()}
+          {this.getDataList()}
       </div>
     </div>
     )
   }
 }
-
-// Dashboard.propTypes = {
-//   series: PropTypes.instanceOf(SeriesDto),
-// }
-// const mapStateToProps = store => ({
-//   series: store.SeriesReducer.series,
-// })
 
 export default Dashboard
