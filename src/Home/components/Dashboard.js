@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import React, { Component } from 'react'
 import Card from '../../components/Card.js';
 import ActeurCard from '../../components/ActeurCard.js';
-import { Button, Navbar, Nav, Form, FormControl, Dropdown, DropdownButton } from 'react-bootstrap'
+import { Button, Navbar, Nav, Form, FormControl, Dropdown, DropdownButton, Spinner } from 'react-bootstrap'
 import SeriesAction from '../../Series/SeriesAction.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCompactDisc, faFilm, faUserTie} from '@fortawesome/free-solid-svg-icons'
@@ -63,7 +63,12 @@ class Dashboard extends Component {
             </div>
           :
           <div>
-          <img src='https://gifimage.net/wp-content/uploads/2018/11/gif-clap-cin%C3%A9ma-7.gif' className='card-img img-responsive' alt='...' style={{ width: '10%'}}/>
+            <div>
+              <img src='https://gifimage.net/wp-content/uploads/2018/11/gif-clap-cin%C3%A9ma-7.gif' className='card-img img-responsive' alt='...' style={{ width: '10%'}}/>
+            </div>
+            <div>
+              <Spinner animation="grow" variant="dark" />
+            </div>
           </div>}
         </div>
       )
@@ -108,9 +113,20 @@ class Dashboard extends Component {
               <Navbar.Toggle aria-controls="basic-navbar-nav"/>
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                  <Nav.Link onClick={() => this.getFilms('Aucun Films', faFilm, FILM)}>Films</Nav.Link>
+                <Nav variant="pills" defaultActiveKey="#first">
+                    <Nav.Item>
+                      <Nav.Link onClick={() => this.getFilms('Aucun Films', faFilm, FILM)} href="#films">Films</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                      <Nav.Link onClick={() => this.getSeries('Aucune Series', faCompactDisc, SERIE)} href="#series">Series</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                      <Nav.Link onClick={() => this.getActeurs('Aucun Acteurs', faUserTie, ACTEUR)} href="#acteurs">Acteurs</Nav.Link>
+                    </Nav.Item>
+                  </Nav>
+                  {/* <Nav.Link onClick={() => this.getFilms('Aucun Films', faFilm, FILM)}>Films</Nav.Link>
                   <Nav.Link onClick={() => this.getSeries('Aucune Series', faCompactDisc, SERIE)}>Series</Nav.Link>
-                  <Nav.Link onClick={() => this.getActeurs('Aucun Acteurs', faUserTie, ACTEUR)}>Acteurs</Nav.Link>
+                  <Nav.Link onClick={() => this.getActeurs('Aucun Acteurs', faUserTie, ACTEUR)}>Acteurs</Nav.Link> */}
                 </Nav>
                 <Form inline>
                 <Button href="/" variant="outline-info">Se déconnecter</Button>

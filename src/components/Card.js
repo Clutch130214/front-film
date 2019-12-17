@@ -20,7 +20,9 @@ class Card extends Component {
                 <div className='card-body'>
                   <h5 className='card-title'>{this.props.obj.nom}</h5>
                   <p className='card-text'>{this.props.obj.description}</p>
-                  <Button variant="primary"><FontAwesomeIcon icon={faInfo} size="2x" /></Button>
+                  <div style={{ textAlign: 'right' }}>
+                    <Button variant="primary"><FontAwesomeIcon icon={faInfo} size="2x" /></Button>
+                  </div>
                 </div>
               </div>
             </div>
