@@ -17,7 +17,6 @@ class Login extends Component {
         this.setState({ user: obj })
     }
   render() {
-    console.log(this.state.user)
     return (
     <div class="simple-login-container">
       <h2 className="display-2">Connexion</h2>
