@@ -4,7 +4,6 @@ import Card from '../../components/Card.js';
 import ActeurCard from '../../components/ActeurCard.js';
 import { Button, Navbar, Nav, NavDropdown, Form, FormControl, Dropdown, DropdownButton, Spinner } from 'react-bootstrap'
 import SeriesAction from '../../Series/SeriesAction.js'
-//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCompactDisc, faFilm, faUserTie} from '@fortawesome/free-solid-svg-icons'
 import AppStore from '../../store/AppStore.js'
 import FilmsAction from '../../Films/FilmsAction.js'
@@ -124,6 +123,7 @@ class Dashboard extends Component {
                     </Nav>
                   </Nav>
                   <Form inline>
+                    <FormControl type="text" placeholder="Recherche" className="mr-sm-2" />
                     <Button href="/" variant="outline-danger">Se déconnecter</Button>
                   </Form>
                 </Navbar.Collapse>

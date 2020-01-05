@@ -9,7 +9,7 @@ class Card extends Component {
 
   getLeftCard(){
     return (
-    <div className="row justify-content-md-center">
+      <div className="row justify-content-md-center">
         <div className="col-md-9 col-xs-9">
           <div className='card mb-3 h-60'>
             <div className='row no-gutters'>
@@ -20,8 +20,8 @@ class Card extends Component {
                 <div className='card-body'>
                   <h5 className='card-title'>{this.props.obj.nom}</h5>
                   <p className='card-text'>{this.props.obj.description}</p>
-                  <div style={{ textAlign: 'right' }}>
-                    <Button variant="primary"><FontAwesomeIcon icon={faInfo} size="2x" /></Button>
+                  <div style={{ position: 'absolute', right: '5px', bottom: '5px' }}>
+                    <Button variant="info"><FontAwesomeIcon icon={faInfo} size="2x" /></Button>
                   </div>
                 </div>
               </div>
@@ -40,9 +40,11 @@ class Card extends Component {
             <div className='row no-gutters'>
               <div className='col-md-10'>
                 <div className='card-body'>
-                    <h5 className='card-title'>{this.props.obj.nom}</h5>
+                  <h5 className='card-title'>{this.props.obj.nom}</h5>
                   <p className='card-text'>{this.props.obj.description}</p>
-                  <Button variant="primary"><FontAwesomeIcon icon={faInfo} size="2x" /></Button>
+                  <div style={{ position: 'absolute', left: '5px', bottom: '5px' }}>
+                    <Button variant="info"><FontAwesomeIcon icon={faInfo} size="2x" /></Button>
+                  </div>
                 </div>
               </div>
               <div className='col-md-2'>
