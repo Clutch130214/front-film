@@ -16,17 +16,23 @@ class Dashboard extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      data: [],
-      noneTitle: 'Aucun Films',
-      noneIcon: faFilm,
-      show: false,
-      dataLoaded: false,
-      selected: 'film'
+        data: [],
+        noneTitle: 'Aucun Films',
+        noneIcon: faFilm,
+        show: false,
+        dataLoaded: false,
+        selected: 'film',
+        search: '',
     }
-  }
+    this.onChangeSearch = this.onChangeSearch.bind(this)
+}
 
   componentWillMount(){
     FilmsAction.fetchFilms(() => {this.setState({  data: AppStore.getState().FilmsReducer.films, dataLoaded: true })})
+  }
+
+  onChangeSearch(value) {
+    this.setState({ search: value })
   }
 
   getSide(i){
@@ -38,13 +44,14 @@ class Dashboard extends Component {
   }
 
   getDataList(){
-    if(this.state.data.length){
-      return this.state.data.map((d, i) => {
+    const data = this.state.data.filter( d => d.nom.toLowerCase().trim().includes(this.state.search.trim().toLowerCase()))
+    if(data.length){
+      return data.map((d, i) => {
         return (
           <div>
             {
-              this.state.selected != ACTEUR ?
-              <Card obj={d} side={this.getSide(i+1)}/>
+              this.state.selected !== ACTEUR ?
+              <Card obj={d} side={this.getSide(i+1)} key={i}/>
               :
               <ActeurCard obj={d} side={this.getSide(i+1)}/>
             }
@@ -70,6 +77,7 @@ class Dashboard extends Component {
       data: AppStore.getState().FilmsReducer.films,
       noneTitle: title,
       noneIcon: icon,
+      search: '',
       selected: selected
     })})
   }
@@ -79,6 +87,7 @@ class Dashboard extends Component {
       data: AppStore.getState().SeriesReducer.series,
       noneTitle: title,
       noneIcon: icon,
+      search: '',
       selected: selected
     })})
   }
@@ -88,6 +97,7 @@ class Dashboard extends Component {
       data: AppStore.getState().ActeursReducer.acteurs,
       noneTitle: title,
       noneIcon: icon,
+      search: '',
       selected: selected
     })})
   }
@@ -123,7 +133,7 @@ class Dashboard extends Component {
                     </Nav>
                   </Nav>
                   <Form inline>
-                    <FormControl type="text" placeholder="Recherche" className="mr-sm-2" />
+                    <FormControl type="text" onChange={ (e) => this.onChangeSearch((e.target.value)) } placeholder="Recherche" className="mr-sm-2"/>
                     <Button href="/" variant="outline-danger">Se déconnecter</Button>
                   </Form>
                 </Navbar.Collapse>

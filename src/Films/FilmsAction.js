@@ -1,9 +1,7 @@
-'use strict'
 import {
     RECEIVE_ALL_FILMS
 } from './FilmsConstants'
 import ApplicationConf from '../conf/ApplicationConf'
-import * as APIConfig from '../conf/APIConfig'
 import AppStore from '../store/AppStore.js'
 
 

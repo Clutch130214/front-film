@@ -1,9 +1,7 @@
-'use strict'
 import {
     RECEIVE_ALL_SERIES
 } from './SeriesConstants'
 import ApplicationConf from '../conf/ApplicationConf'
-import * as APIConfig from '../conf/APIConfig'
 import AppStore from '../store/AppStore.js'
 
 

@@ -1,5 +1,3 @@
-'use strict'
-
 import {
     RECEIVE_ALL_SERIES,
 } from './SeriesConstants'

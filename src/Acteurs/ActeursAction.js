@@ -1,4 +1,3 @@
-'use strict'
 import {
     RECEIVE_ALL_ACTEURS
 } from './ActeursConstants'
