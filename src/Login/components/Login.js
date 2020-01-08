@@ -3,18 +3,17 @@ import '../../css/Login.css';
 import { Button } from 'react-bootstrap'
 
 class Login extends Component {
-  constructor(props) {
-        super(props)
-        this.state = {
-            user: {},
-        }
-        this.onChangeUser = this.onChangeUser.bind(this)
-    }
 
-    onChangeUser(key, value) {
-        const obj = Object.assign({}, this.state.user)
-        obj[key] = value
-        this.setState({ user: obj })
+    handleSubmit = event => {
+      event.preventDefault();
+      fetch('127.0.0.1:5000/login', {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          "user": this.lastName.value,
+          "password": this.firstName.value,
+        })
+      });
     }
     
   render() {
@@ -23,12 +22,12 @@ class Login extends Component {
       <h2 className="display-2">Connexion</h2>
         <div className="row">
           <div className="col-md-12 form-group">
-            <input type="text" className="form-control" onChange={ (e) => this.onChangeUser('user', (e.target.value)) } placeholder="Login"/>
+            <input type="text" className="form-control" ref={(ref) => {this.lastName = ref}} name="user" placeholder="Login"/>
           </div>
         </div>
         <div className="row">
           <div className="col-md-12 form-group">
-            <input type="password" className="form-control"  onChange={ (e) => this.onChangeUser('password', (e.target.value)) } placeholder="Mot de passe"/>
+            <input type="password" className="form-control"  ref={(ref) => {this.lastName = ref}} name="last-password" placeholder="Mot de passe"/>
           </div>
         </div>
         <div className="row">
