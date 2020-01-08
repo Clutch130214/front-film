@@ -19,7 +19,7 @@ class Login extends Component {
     
   render() {
     return (
-    <div className="simple-login-container">
+    <form className="simple-login-container">
       <h2 className="display-2">Connexion</h2>
         <div className="row">
           <div className="col-md-12 form-group">
@@ -44,7 +44,7 @@ class Login extends Component {
             <Button href="/register" variant="btn-sm">Créer un compte ?</Button>
           </div>
         </div>
-    </div>
+    </form>
     );
   };
 }

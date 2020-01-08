@@ -3,12 +3,8 @@ import '../../css/Register.css';
 import { Button } from 'react-bootstrap'
 
 class Register extends Component {
-  constructor(props) {
-    super(props)
-    this.handleSubmit = this.handleSubmit.bind(this)
-  }
 
-  handleSubmit(event) {
+  handleSubmit = event => {
     event.preventDefault();
     fetch('127.0.0.1:5000/users', {
       method: 'post',
@@ -25,7 +21,7 @@ class Register extends Component {
 
   render() {
     return (
-      <div className="simple-login-container" onSubmit={this.handleSubmit}>
+      <form className="simple-login-container" onSubmit={this.handleSubmit}>
         <h2 className="display-2">Création de compte</h2>
         <div className="row">
           <div className="col-md-12 form-group">
@@ -65,7 +61,7 @@ class Register extends Component {
             <Button href="/login" variant="btn-sm">Se connecter ?</Button>
           </div>
         </div>
-      </div>
+      </form>
     );
   };
 }
