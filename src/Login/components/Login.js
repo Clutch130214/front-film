@@ -16,31 +16,32 @@ class Login extends Component {
         obj[key] = value
         this.setState({ user: obj })
     }
+    
   render() {
     return (
-    <div class="simple-login-container">
+    <div className="simple-login-container">
       <h2 className="display-2">Connexion</h2>
-        <div class="row">
-          <div class="col-md-12 form-group">
-            <input type="text" class="form-control" onChange={ (e) => this.onChangeUser('user', (e.target.value)) } placeholder="Login"/>
+        <div className="row">
+          <div className="col-md-12 form-group">
+            <input type="text" className="form-control" onChange={ (e) => this.onChangeUser('user', (e.target.value)) } placeholder="Login"/>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-12 form-group">
-            <input type="password" class="form-control"  onChange={ (e) => this.onChangeUser('password', (e.target.value)) } placeholder="Mot de passe"/>
+        <div className="row">
+          <div className="col-md-12 form-group">
+            <input type="password" className="form-control"  onChange={ (e) => this.onChangeUser('password', (e.target.value)) } placeholder="Mot de passe"/>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <div class="btn-group">
-              <Button href="/dashboard" className="btn-secondary">Retour</Button>
+        <div className="row">
+          <div className="col-md-12 text-center">
+            <div className="btn-group">
+              <Button href="/" className="btn-secondary">Retour</Button>
               <Button type="submit" className="btn-primary">Se connecter</Button>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <Button href="/" variant="btn-sm">Créer un compte ?</Button>
+        <div className="row">
+          <div className="col-md-12 text-center">
+            <Button href="/register" variant="btn-sm">Créer un compte ?</Button>
           </div>
         </div>
     </div>

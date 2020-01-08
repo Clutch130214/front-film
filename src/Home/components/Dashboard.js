@@ -63,8 +63,8 @@ class Dashboard extends Component {
       return (
         <div style={{ textAlign: 'center', paddingTop: '100px'}}>
           <div>
-            <div class="spinner-border m-5" role="status">
-              <span class="sr-only">Loading...</span>
+            <div className="spinner-border m-5" role="status">
+              <span className="sr-only">Loading...</span>
             </div>
           </div>
         </div>
@@ -127,8 +127,8 @@ class Dashboard extends Component {
                         <NavDropdown.Item eventKey="1">Tous</NavDropdown.Item>
                         <NavDropdown.Item eventKey="2">Action</NavDropdown.Item>
                         <NavDropdown.Item eventKey="3">Science-fiction</NavDropdown.Item>
-                        <NavDropdown.Item eventKey="3">Policier</NavDropdown.Item>
-                        <NavDropdown.Item eventKey="3">Comédie</NavDropdown.Item>
+                        <NavDropdown.Item eventKey="4">Policier</NavDropdown.Item>
+                        <NavDropdown.Item eventKey="5">Comédie</NavDropdown.Item>
                       </NavDropdown>
                     </Nav>
                   </Nav>
