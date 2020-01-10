@@ -1,20 +1,41 @@
 import React, { Component } from "react";
+import { Button } from 'react-bootstrap';
+import AuthService from '../../components/AuthService';
 import '../../css/Login.css';
-import { Button } from 'react-bootstrap'
+
 
 class Login extends Component {
+  constructor() {
+    super();
+    this.handleChange = this.handleChange.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.Auth = new AuthService();
+  }
 
-    handleSubmit = event => {
-      event.preventDefault();
-      fetch('127.0.0.1:5000/login', {
-        method: 'post',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          "user": this.lastName.value,
-          "password": this.firstName.value,
+  handleChange(e) {
+    this.setState(
+      {
+        [e.target.name]: e.target.value
+      }
+    )
+  }
+
+  handleFormSubmit(e) {
+    e.preventDefault();
+  
+    this.Auth.login(this.state.username,this.state.password)
+        .then(res => {
+           this.props.history.replace('/');
         })
-      });
-    }
+        .catch(err => {
+            alert(err);
+        })
+}
+
+componentWillMount(){
+  if(this.Auth.loggedIn())
+      this.props.history.replace('/');
+}
     
   render() {
     return (
@@ -22,19 +43,19 @@ class Login extends Component {
       <h2 className="display-2">Connexion</h2>
         <div className="row">
           <div className="col-md-12 form-group">
-            <input type="text" className="form-control" ref={(ref) => {this.lastName = ref}} name="user" placeholder="Login"/>
+            <input type="text" className="form-control" onChange={this.handleChange} name="user" placeholder="Login"/>
           </div>
         </div>
         <div className="row">
           <div className="col-md-12 form-group">
-            <input type="password" className="form-control"  ref={(ref) => {this.lastName = ref}} name="last-password" placeholder="Mot de passe"/>
+            <input type="password" className="form-control" onChange={this.handleChange} name="password" placeholder="Mot de passe"/>
           </div>
         </div>
         <div className="row">
           <div className="col-md-12 text-center">
             <div className="btn-group">
               <Button href="/" className="btn-secondary">Retour</Button>
-              <Button type="submit" className="btn-primary">Se connecter</Button>
+              <Button type="submit" value="SUBMIT" className="btn-primary">Se connecter</Button>
             </div>
           </div>
         </div>

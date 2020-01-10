@@ -2,15 +2,21 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import React, { Component } from 'react'
 import Card from '../../components/Card.js';
 import ActeurCard from '../../components/ActeurCard.js';
-import { Button, Navbar, Nav, NavDropdown, Form, FormControl, Dropdown, DropdownButton, Spinner } from 'react-bootstrap'
-import SeriesAction from '../../Series/SeriesAction.js'
+import { Button, Navbar, Nav, NavDropdown, Form, FormControl } from 'react-bootstrap'
 import { faCompactDisc, faFilm, faUserTie} from '@fortawesome/free-solid-svg-icons'
+import SeriesAction from '../../Series/SeriesAction.js'
+
 import AppStore from '../../store/AppStore.js'
 import FilmsAction from '../../Films/FilmsAction.js'
 import ActeursAction from '../../Acteurs/ActeursAction.js'
 import {
   FILM, SERIE, ACTEUR
 } from '../constant/HomeConstant'
+
+import AuthService from '../../components/AuthService';
+import WithAuth from '../../components/WithAuth';
+const Auth = new AuthService();
+
 
 class Dashboard extends Component {
   constructor(props) {
@@ -102,6 +108,11 @@ class Dashboard extends Component {
     })})
   }
 
+  handleLogout(){
+    Auth.logout()
+    this.props.history.replace('/login');
+ }
+
   render() {
     return (
       <div>
@@ -110,6 +121,7 @@ class Dashboard extends Component {
             <nav className="col-md-9 col-xs-9">
               <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
                 <Navbar.Brand href="#home">SuperFilm</Navbar.Brand>
+                <Navbar.Brand>Bienvenue {this.props.user.username} !</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className="mr-auto">
@@ -134,7 +146,7 @@ class Dashboard extends Component {
                   </Nav>
                   <Form inline>
                     <FormControl type="text" onChange={ (e) => this.onChangeSearch((e.target.value)) } placeholder="Recherche" className="mr-sm-2"/>
-                    <Button href="/" variant="outline-danger">Se déconnecter</Button>
+                    <Button variant="outline-danger" onClick={this.handleLogout.bind(this)}>Se déconnecter</Button>
                   </Form>
                 </Navbar.Collapse>
               </Navbar>
@@ -149,4 +161,4 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard
+export default WithAuth(Dashboard)

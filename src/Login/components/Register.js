@@ -4,21 +4,6 @@ import { Button } from 'react-bootstrap'
 
 class Register extends Component {
 
-  handleSubmit = event => {
-    event.preventDefault();
-    fetch('127.0.0.1:5000/users', {
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        "last-name": this.lastName.value,
-        "first-name": this.firstName.value,
-        "login": this.login.value,
-        "password": this.password.value,
-        "age": this.age.value
-      })
-    });
-  }
-
   render() {
     return (
       <form className="simple-login-container" onSubmit={this.handleSubmit}>
@@ -26,8 +11,8 @@ class Register extends Component {
         <div className="row">
           <div className="col-md-12 form-group">
             <div className="input-group">
-              <input type="text" className="form-control" ref={(ref) => {this.lastName = ref}} name="last-name" placeholder="Nom" />
-              <input type="text" className="form-control" ref={(ref) => {this.firstName = ref}} name="first-name" placeholder="Prénom" />
+              <input type="text" className="form-control" placeholder="Nom" />
+              <input type="text" className="form-control" placeholder="Prénom" />
             </div>
           </div>
         </div>
@@ -35,17 +20,17 @@ class Register extends Component {
         </div>
         <div className="row">
           <div className="col-md-12 form-group">
-            <input type="text" className="form-control" ref={(ref) => {this.login = ref}} name="login" placeholder="Login" />
+            <input type="text" className="form-control" placeholder="Login" />
           </div>
         </div>
         <div className="row">
           <div className="col-md-12 form-group">
-            <input type="password" className="form-control" ref={(ref) => {this.password = ref}} name="password" placeholder="Mot de passe" />
+            <input type="password" className="form-control" placeholder="Mot de passe" />
           </div>
         </div>
         <div className="row">
           <div className="col-md-12 form-group">
-            <input type="number" className="form-control" ref={(ref) => {this.age = ref}} name="age" placeholder="Age" />
+            <input type="number" className="form-control" placeholder="Age" />
           </div>
         </div>
         <div className="row">
