@@ -39,7 +39,7 @@ componentWillMount(){
     
   render() {
     return (
-    <form className="simple-login-container">
+    <form className="simple-login-container" onSubmit={this.handleFormSubmit}>
       <h2 className="display-2">Connexion</h2>
         <div className="row">
           <div className="col-md-12 form-group">
