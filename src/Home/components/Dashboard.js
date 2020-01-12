@@ -121,7 +121,6 @@ class Dashboard extends Component {
             <nav className="col-md-9 col-xs-9">
               <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
                 <Navbar.Brand href="#home">SuperFilm</Navbar.Brand>
-                <Navbar.Brand>Bienvenue {this.props.user.username} !</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className="mr-auto">
