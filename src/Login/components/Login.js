@@ -1,12 +1,16 @@
 import React, { Component } from "react";
-import { Button } from 'react-bootstrap';
-import AuthService from '../../components/AuthService';
+import { Button, Alert } from 'react-bootstrap';
+import AuthService from '../../Auth/AuthService';
 import '../../css/Login.css';
-
 
 class Login extends Component {
   constructor() {
     super();
+    this.state = {
+      show: false,
+      user: '',
+      password: ''
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.Auth = new AuthService();
@@ -20,15 +24,28 @@ class Login extends Component {
     )
   }
 
+  handleDismiss = () => {
+    this.setState({ show: false });
+  }
+
+  Alert() {
+    return (
+      <Alert variant="danger" onClose={this.handleDismiss} dismissible>
+        <Alert.Heading> Accès non autorisé ! </Alert.Heading>
+      </Alert>
+    )
+  }
+
   handleFormSubmit(e) {
     e.preventDefault();
-  
     this.Auth.login(this.state.user,this.state.password)
         .then(res => {
+            console.log(res)
            this.props.history.replace('/');
         })
         .catch(err => {
-            alert(err);
+            this.setState({ show: true });
+            // alert(err);
         })
 }
 
@@ -36,7 +53,7 @@ componentWillMount(){
   if(this.Auth.loggedIn())
       this.props.history.replace('/');
 }
-    
+
   render() {
     return (
     <form className="simple-login-container" onSubmit={this.handleFormSubmit}>
@@ -63,6 +80,7 @@ componentWillMount(){
           <div className="col-md-12 text-center">
             <Button href="/register" variant="btn-sm">Créer un compte ?</Button>
           </div>
+          {this.state.show && this.Alert()}
         </div>
     </form>
     );

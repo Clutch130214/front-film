@@ -13,6 +13,8 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
+          {/* <Dashboard/>
+          <Route path='/film/:id' component={Register}/> */}
           <Route exact path='/' component={Dashboard}/>
           <Route path='/register' component={Register}/>
           <Route path='/login' component={Login}/>

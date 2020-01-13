@@ -1,6 +1,7 @@
 import {
     RECEIVE_ALL_SERIES,
 } from './SeriesConstants'
+import SeriesDto from './SeriesDto'
 
 export const store = {
     series: [],
@@ -12,7 +13,7 @@ export function SeriesReducer(state = {}, action) {
             console.log(action)
             return {
                 ...state,
-                series: action.series
+                series: action.series.map( serie => new SeriesDto(serie))
             }
         default:
             return state
