@@ -14,15 +14,7 @@ class FilmDashboard extends Component {
     super(props)
     this.state = {
       film: [],
-      acteurs: [
-        {
-          id: "21",
-          nom: "Dench",
-          prenom: "Judi",
-          url: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Judi_Dench_at_the_BAFTAs_2007.jpg/330px-Judi_Dench_at_the_BAFTAs_2007.jpg",
-          description: "Dame Judith Olivia Dench, dite Judi Dench [ˈd͡ʒuːdi ˈdɛnt͡ʃ ]1, née le 9 décembre 1934 à York, est une act"
-        }
-      ]
+      acteurs: []
   }
 }
 
