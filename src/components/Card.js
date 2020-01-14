@@ -21,7 +21,7 @@ class Card extends Component {
                   <h5 className='card-title'>{this.props.obj.nom}</h5>
                   <p className='card-text'>{this.props.obj.description}</p>
                   <div style={{ position: 'absolute', right: '5px', bottom: '5px' }}>
-                    <Button variant="info"><FontAwesomeIcon icon={faInfo} size="2x" /></Button>
+                    <Button href={this.props.url} variant="info"><FontAwesomeIcon icon={faInfo} size="2x" /></Button>
                   </div>
                 </div>
               </div>
@@ -43,7 +43,7 @@ class Card extends Component {
                   <h5 className='card-title'>{this.props.obj.nom}</h5>
                   <p className='card-text'>{this.props.obj.description}</p>
                   <div style={{ position: 'absolute', left: '5px', bottom: '5px' }}>
-                    <Button variant="info"><FontAwesomeIcon icon={faInfo} size="2x" /></Button>
+                    <Button href={this.props.url} variant="info"><FontAwesomeIcon icon={faInfo} size="2x" /></Button>
                   </div>
                 </div>
               </div>
@@ -76,6 +76,7 @@ class Card extends Component {
 Card.propTypes = {
   obj: PropTypes.object,
   side: PropTypes.string,
+  url: PropTypes.string,
 }
 
 export default Card

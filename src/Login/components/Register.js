@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import '../../css/Register.css';
 import { Button } from 'react-bootstrap'
-import RegisterService from '../../components/RegisterService';
+import RegisterService from '../../Auth/RegisterService';
 import { Alert } from "react-bootstrap";
 
 class Register extends Component {

@@ -17,6 +17,7 @@ class ActeurCard extends Component {
                 <div className='card-body'>
                   <p className='card-text'>{this.props.obj.prenom}</p>
                   <h5 className='card-title'>{this.props.obj.nom}</h5>
+                  <p className='card-text'>{this.props.obj.description}</p>
                 </div>
               </div>
             </div>
@@ -36,6 +37,7 @@ class ActeurCard extends Component {
                 <div className='card-body'>
                     <p className='card-text'>{this.props.obj.prenom}</p>
                     <h5 className='card-title'>{this.props.obj.nom}</h5>
+                    <p className='card-text'>{this.props.obj.description}</p>
                 </div>
               </div>
               <div className='col-md-2'>

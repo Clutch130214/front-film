@@ -1,10 +1,12 @@
 import {
     RECEIVE_ALL_FILMS,
+    RECEIVE_FILM
 } from './FilmsConstants'
 import FilmsDto from './FilmsDto'
 
 export const store = {
     films: [],
+    film: {}
 }
 
 export function FilmsReducer(state = {}, action) {
@@ -14,6 +16,12 @@ export function FilmsReducer(state = {}, action) {
             return {
                 ...state,
                 films: action.films.map( film => new FilmsDto(film))
+            }
+        case RECEIVE_FILM:
+            console.log(action)
+            return {
+                ...state,
+                film: action.film
             }
         default:
             return state

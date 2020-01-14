@@ -60,7 +60,7 @@ class Dashboard extends Component {
           <div>
             {
               this.state.selected !== ACTEUR ?
-              <Card obj={d} side={this.getSide(i+1)} key={i}/>
+              <Card obj={d} side={this.getSide(i+1)} url={`/${d.label}/${d.id}`} key={i}/>
               :
               <ActeurCard obj={d} side={this.getSide(i+1)}/>
             }
@@ -184,5 +184,4 @@ class Dashboard extends Component {
   }
 }
 
-// export default Dashboard
 export default WithAuth(Dashboard)

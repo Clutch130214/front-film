@@ -8,5 +8,6 @@ export default class {
         this.url = object.url
         this.acteur_list = object.acteur_list
         this.categorie = getCategory(object.id_categorie)
+        this.label = 'film'
     }
 }
