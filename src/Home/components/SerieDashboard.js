@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import React, { Component } from 'react'
-import { Navbar, Button } from 'react-bootstrap';
+import { Navbar, Button, ButtonToolbar, Popover } from 'react-bootstrap';
 import { Form } from 'react-bootstrap';
 import PropTypes from 'prop-types'
 import AuthService from '../../Auth/AuthService';
@@ -8,6 +8,7 @@ import SeriesAction from '../../Series/SeriesAction';
 import ActeursAction from '../../Acteurs/ActeursAction';
 import AppStore from '../../store/AppStore';
 import ActeurCard from '../../components/ActeurCard';
+import { OverlayTrigger } from 'react-bootstrap';
 const Auth = new AuthService();
 
 
@@ -44,7 +45,6 @@ getActeurList() {
 }
 
   render() {
-    console.log(this.state.acteurs)
     return (
       <div>
         <header className="App-header">
@@ -54,9 +54,20 @@ getActeurList() {
                   <Navbar.Brand href="/">SuperFilm</Navbar.Brand>
                   <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                   <Navbar.Collapse id="basic-navbar-nav">
-                    <Form inline>
-                      <Button variant="outline-danger" onClick={this.handleLogout.bind(this)}>Se déconnecter</Button>
-                    </Form>
+                    <ButtonToolbar>
+                              <OverlayTrigger
+                                trigger="click"
+                                key={'bottom'}
+                                placement={'bottom'}
+                                overlay={
+                                  <Popover id={`popover-positioned-${'bottom'}`}>
+                                    <Button variant="outline-danger" onClick={this.handleLogout.bind(this)}>Se déconnecter</Button>
+                                  </Popover>
+                                }
+                                >
+                                <Button variant="info">Connecté en tant que {localStorage.getItem('login')}</Button>
+                              </OverlayTrigger>
+                      </ButtonToolbar>
                   </Navbar.Collapse>
                 </Navbar>
             </nav>

@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import React, { Component, Fragment } from 'react'
 import Card from '../../components/Card.js';
 import ActeurCard from '../../components/ActeurCard.js';
-import { Button, Navbar, Nav, NavDropdown, Form, FormControl } from 'react-bootstrap'
+import { Button, Navbar, Nav, NavDropdown, Form, FormControl, Popover, ButtonToolbar } from 'react-bootstrap'
 import { faCompactDisc, faFilm, faUserTie} from '@fortawesome/free-solid-svg-icons'
 import SeriesAction from '../../Series/SeriesAction.js'
 
@@ -16,6 +16,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import AuthService from '../../Auth/AuthService';
 import WithAuth from '../../Auth/WithAuth';
+import { OverlayTrigger } from 'react-bootstrap';
 const Auth = new AuthService();
 
 
@@ -134,6 +135,7 @@ class Dashboard extends Component {
  }
 
   render() {
+    console.log(localStorage.getItem('login'))
     return (
       <div>
         <header className="App-header">
@@ -169,7 +171,20 @@ class Dashboard extends Component {
                   </Nav>
                   <Form inline>
                     <FormControl type="text" onChange={ (e) => this.onChangeSearch((e.target.value)) } placeholder="Recherche" className="mr-sm-2"/>
-                    <Button variant="outline-danger" onClick={this.handleLogout.bind(this)}>Se déconnecter</Button>
+                      <ButtonToolbar>
+                          <OverlayTrigger
+                            trigger="click"
+                            key={'bottom'}
+                            placement={'bottom'}
+                            overlay={
+                              <Popover id={`popover-positioned-${'bottom'}`}>
+                                <Button variant="outline-danger" onClick={this.handleLogout.bind(this)}>Se déconnecter</Button>
+                              </Popover>
+                            }
+                            >
+                            <Button variant="info">Connecté en tant que {localStorage.getItem('login')}</Button>
+                          </OverlayTrigger>
+                      </ButtonToolbar>
                   </Form>
                 </Navbar.Collapse>
               </Navbar>

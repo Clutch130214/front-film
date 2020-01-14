@@ -18,6 +18,8 @@ export default function withAuth(AuthComponent) {
             else {
                 try {
                     const profile = Auth.getProfile()
+                    localStorage.setItem('login', profile.login)
+                    localStorage.setItem('id', profile.id)
                     this.setState({
                         user: profile
                     })

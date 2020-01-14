@@ -21,7 +21,7 @@ export function FilmsReducer(state = {}, action) {
             console.log(action)
             return {
                 ...state,
-                film: action.film
+                film: new FilmsDto(action.film)
             }
         default:
             return state

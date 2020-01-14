@@ -56,7 +56,7 @@ class Register extends Component {
   Missing(){
     return (
       <Alert variant="warning" onClose={this.handleDismiss} dismissible>
-        <Alert.Heading>Tous les champs doivent êtres remplies</Alert.Heading>
+        <Alert.Heading>Tous les champs doivent être remplis</Alert.Heading>
       </Alert>
     )
   }

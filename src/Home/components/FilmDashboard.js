@@ -1,12 +1,13 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Button, Form, Navbar } from 'react-bootstrap'
+import { Button, Form, Navbar, ButtonToolbar, Popover } from 'react-bootstrap'
 import AuthService from '../../Auth/AuthService';
 import FilmsAction from '../../Films/FilmsAction';
 import AppStore from '../../store/AppStore';
 import ActeursAction from '../../Acteurs/ActeursAction';
 import ActeurCard from '../../components/ActeurCard';
+import { OverlayTrigger } from 'react-bootstrap';
 const Auth = new AuthService();
 
 class FilmDashboard extends Component {
@@ -51,9 +52,20 @@ getActeurList() {
                   <Navbar.Brand href="/">SuperFilm</Navbar.Brand>
                   <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                   <Navbar.Collapse id="basic-navbar-nav">
-                    <Form inline>
-                      <Button variant="outline-danger" onClick={this.handleLogout.bind(this)}>Se déconnecter</Button>
-                    </Form>
+                    <ButtonToolbar>
+                            <OverlayTrigger
+                              trigger="click"
+                              key={'bottom'}
+                              placement={'bottom'}
+                              overlay={
+                                <Popover id={`popover-positioned-${'bottom'}`}>
+                                  <Button variant="outline-danger" onClick={this.handleLogout.bind(this)}>Se déconnecter</Button>
+                                </Popover>
+                              }
+                              >
+                              <Button variant="info">Connecté en tant que {localStorage.getItem('login')}</Button>
+                            </OverlayTrigger>
+                    </ButtonToolbar>
                   </Navbar.Collapse>
                 </Navbar>
             </nav>

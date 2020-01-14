@@ -21,7 +21,7 @@ export function SeriesReducer(state = {}, action) {
             console.log(action)
             return {
                 ...state,
-                serie: action.serie
+                serie: new SeriesDto(action.serie)
             }
         default:
             return state
