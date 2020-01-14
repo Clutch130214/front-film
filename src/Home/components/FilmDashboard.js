@@ -1,12 +1,12 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Button, Form, Navbar, ButtonToolbar, Popover } from 'react-bootstrap'
+import { Button, Navbar, ButtonToolbar, Popover, Nav } from 'react-bootstrap'
 import AuthService from '../../Auth/AuthService';
 import FilmsAction from '../../Films/FilmsAction';
 import AppStore from '../../store/AppStore';
 import ActeursAction from '../../Acteurs/ActeursAction';
-import ActeurCard from '../../components/ActeurCard';
+import ActeurCardDashboard from '../../components/ActeurCardDashboard';
 import { OverlayTrigger } from 'react-bootstrap';
 const Auth = new AuthService();
 
@@ -38,7 +38,7 @@ componentWillMount() {
 
 getActeurList() {
   return this.state.acteurs.map( a => {
-      return <ActeurCard obj={a} side={'left'}/>
+      return <ActeurCardDashboard obj={a}/>
   })
 }
 
@@ -52,6 +52,7 @@ getActeurList() {
                   <Navbar.Brand href="/">SuperFilm</Navbar.Brand>
                   <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                   <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="ml-auto">
                     <ButtonToolbar>
                             <OverlayTrigger
                               trigger="click"
@@ -66,6 +67,7 @@ getActeurList() {
                               <Button variant="info">Connecté en tant que {localStorage.getItem('login')}</Button>
                             </OverlayTrigger>
                     </ButtonToolbar>
+                    </Nav>
                   </Navbar.Collapse>
                 </Navbar>
             </nav>
@@ -74,7 +76,7 @@ getActeurList() {
         <div className="margin-card-top">
           <div className="row justify-content-md-center">
           <div className="col-md-9 col-xs-9">
-            <div className='card mb-3 h-60'>
+            <div className='card mb-3 h-60 border border-primary'>
               <div className='row no-gutters'>
                 <div className='col-md-2'>
                   <img src={this.state.film.url} className='card-img img-responsive' alt='...'/>
@@ -86,7 +88,9 @@ getActeurList() {
                     </div>
                   </div>
                 </div>
-                {this.getActeurList()}
+                <div className="card-group row no-gutters pt-1">
+                  {this.getActeurList()}
+                </div>
               </div>
             </div>
           </div>

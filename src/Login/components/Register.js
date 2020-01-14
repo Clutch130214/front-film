@@ -39,25 +39,25 @@ class Register extends Component {
 
   Success(){
     return (
-      <Alert variant="success" onClose={this.handleDismiss} dismissible>
-        <Alert.Heading>Compte crée avec succès !</Alert.Heading>
-      </Alert>
+      <div className="alert alert-success text-center" role="alert">
+        Compte crée avec succès !
+      </div>
     )
   }
 
   Error(){
     return (
-      <Alert variant="danger" onClose={this.handleDismiss} dismissible>
-        <Alert.Heading>Erreur lors de la création du compte</Alert.Heading>
-      </Alert>
+      <div className="alert alert-danger text-center" role="alert">
+        Une erreur est survenue lors de la création du compte !
+      </div>
     )
   }
 
   Missing(){
     return (
-      <Alert variant="warning" onClose={this.handleDismiss} dismissible>
-        <Alert.Heading>Tous les champs doivent être remplis</Alert.Heading>
-      </Alert>
+      <div className="alert alert-warning text-center" role="alert">
+        Tous les champs doivent être remplis !
+      </div>
     )
   }
 
@@ -107,8 +107,8 @@ class Register extends Component {
 
   render() {
     return (
-      <div className="simple-login-container" onSubmit={this.handleFormSubmit}>
-        <h2 className="display-2">Création de compte</h2>
+      <div className="simple-register-container" onSubmit={this.handleFormSubmit}>
+        <h2 className="display-2 text-light">Création de compte</h2>
         <div className="row">
           <div className="col-md-12 form-group">
             <div className="input-group">
@@ -144,7 +144,7 @@ class Register extends Component {
         </div>
         <div className="row">
           <div className="col-md-12 text-center">
-            <Button href="/login" variant="btn-sm">Se connecter ?</Button>
+            <Button href="/login" variant="btn-sm text-light">Se connecter ?</Button>
             {this.state.show ? this.Alert() : ''}
           </div>
         </div>

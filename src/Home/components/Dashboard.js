@@ -25,7 +25,7 @@ class Dashboard extends Component {
     super(props)
     this.state = {
         data: [],
-        noneTitle: 'Aucun Films',
+        noneTitle: 'Aucuns Films',
         noneIcon: faFilm,
         show: false,
         dataLoaded: false,
@@ -80,7 +80,7 @@ class Dashboard extends Component {
           </div>
         </div>
         :
-        <div style={{ textAlign: 'center', paddingTop: '100px'}}>
+        <div style={{ textAlign: 'center', paddingTop: '100px', color: 'white'}}>
             <FontAwesomeIcon icon={this.state.noneIcon} size="4x" />
             <h1>{this.state.noneTitle}</h1>
         </div>
@@ -148,13 +148,13 @@ class Dashboard extends Component {
                   <Nav className="mr-auto">
                     <Nav defaultActiveKey="#first">
                       <Nav.Item>
-                        <Nav.Link onClick={() => this.getFilms('Aucun Films', faFilm, FILM)} href="#films">Films</Nav.Link>
+                        <Nav.Link onClick={() => this.getFilms('Aucuns Films', faFilm, FILM)} href="#films">Films</Nav.Link>
                       </Nav.Item>
                       <Nav.Item>
-                        <Nav.Link onClick={() => this.getSeries('Aucune Series', faCompactDisc, SERIE)} href="#series">Series</Nav.Link>
+                        <Nav.Link onClick={() => this.getSeries('Aucunes Series', faCompactDisc, SERIE)} href="#series">Series</Nav.Link>
                       </Nav.Item>
                       <Nav.Item>
-                        <Nav.Link onClick={() => this.getActeurs('Aucun Acteurs', faUserTie, ACTEUR)} href="#acteurs">Acteurs</Nav.Link>
+                        <Nav.Link onClick={() => this.getActeurs('Aucuns Acteurs', faUserTie, ACTEUR)} href="#acteurs">Acteurs</Nav.Link>
                       </Nav.Item>
                       { this.state.selected !== ACTEUR &&
                       <Fragment>

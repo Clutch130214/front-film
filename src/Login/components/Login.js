@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Alert } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import AuthService from '../../Auth/AuthService';
 import '../../css/Login.css';
 
@@ -31,9 +31,9 @@ class Login extends Component {
 
   Error() {
     return (
-      <Alert variant="danger" onClose={this.handleDismiss} dismissible>
-        <Alert.Heading> Accès non autorisé ! </Alert.Heading>
-      </Alert>
+      <div className="alert alert-danger text-center" role="alert">
+        Accès non autorisé !
+      </div>
     )
   }
 
@@ -41,8 +41,8 @@ class Login extends Component {
     return (
       <div style={{ textAlign: 'center' }}>
           <div>
-            <div class="spinner-border m-5" role="status">
-              <span class="sr-only">Loading...</span>
+            <div className="spinner-border m-5" role="status">
+              <span className="sr-only">Loading...</span>
             </div>
           </div>
         </div>
@@ -67,7 +67,6 @@ class Login extends Component {
         })
         .catch(err => {
             this.setState({ show: true, alertMode: 'error'});
-            // alert(err);
         })
 }
 
@@ -79,7 +78,7 @@ componentWillMount(){
   render() {
     return (
     <form className="simple-login-container" onSubmit={this.handleFormSubmit}>
-      <h2 className="display-2">Connexion</h2>
+      <h2 className="display-2 text-light">Connexion</h2>
         <div className="row">
           <div className="col-md-12 form-group">
             <input type="text" className="form-control" onChange={this.handleChange} name="user" placeholder="Login"/>
@@ -90,19 +89,14 @@ componentWillMount(){
             <input type="password" className="form-control" onChange={this.handleChange} name="password" placeholder="Mot de passe"/>
           </div>
         </div>
+        {this.state.show && this.Alert()}
         <div className="row">
           <div className="col-md-12 text-center">
             <div className="btn-group">
-              <Button href="/" className="btn-secondary">Retour</Button>
+              <Button href="/register" className="btn-secondary">Créer un compte</Button>
               <Button type="submit" value="SUBMIT" className="btn-primary">Se connecter</Button>
             </div>
           </div>
-        </div>
-        <div className="row" style={{ placeContent: 'center' }}>
-          <div className="col-md-12 text-center">
-            <Button href="/register" variant="btn-sm">Créer un compte ?</Button>
-          </div>
-          {this.state.show && this.Alert()}
         </div>
     </form>
     );
