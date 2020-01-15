@@ -78,20 +78,22 @@ class FilmDashboard extends Component {
         <div className="margin-card-top">
           <div className="row justify-content-md-center">
             <div className="col-md-9 col-xs-9">
-              <div className='card mb-3 h-60 border border-primary'>
+              <div className='card mb-3 h-60 border border-info shadow'>
                 <div className='row no-gutters'>
-                  <div className='col-md-2'>
+                  <div className='col-md-3'>
                     <img src={ this.state.film.url } className='card-img img-responsive' alt='...' />
                   </div>
-                  <div className='col-md-10'>
+                  <div className='col-md-9'>
                     <div className='card-body'>
                       <h5 className='card-title'>{ this.state.film.nom }</h5>
                       <p className='card-text'>{ this.state.film.description }</p>
+                      <div style={ { position: 'absolute', left: '5px', bottom: '5px' } }>
+                        <div className="card-group row no-gutters">
+                          { this.getActeurList() }
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="card-group row no-gutters pt-1">
-                  { this.getActeurList() }
                 </div>
               </div>
             </div>

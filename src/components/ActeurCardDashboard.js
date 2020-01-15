@@ -16,8 +16,8 @@ class ActeurCard extends Component {
 
   render() {
     return (
-      <div className="Card">
-        { this.getActorImage() }
+      <div>
+        {this.getActorImage()}
       </div>
     )
   }

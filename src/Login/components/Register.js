@@ -107,7 +107,7 @@ class Register extends Component {
   render() {
     return (
       <div className="simple-register-container" onSubmit={this.handleFormSubmit}>
-        <h2 className="display-2 text-light">Création de compte</h2>
+        <h2 className="display-2">Création de compte</h2>
         <div className="row">
           <div className="col-md-12 form-group">
             <div className="input-group">
@@ -143,7 +143,7 @@ class Register extends Component {
         </div>
         <div className="row">
           <div className="col-md-12 text-center">
-            <Button href="/login" variant="btn-sm text-light">Se connecter ?</Button>
+            <Button href="/login" variant="btn-sm">Se connecter ?</Button>
             {this.state.show ? this.Alert() : ''}
           </div>
         </div>

@@ -77,8 +77,8 @@ class Login extends Component {
 
   render() {
     return (
-      <form className="simple-login-container" onSubmit={ this.handleFormSubmit }>
-        <h2 className="display-2 text-light">Connexion</h2>
+    <form className="simple-login-container" onSubmit={this.handleFormSubmit}>
+      <h2 className="display-2">Connexion</h2>
         <div className="row">
           <div className="col-md-12 form-group">
             <input type="text" className="form-control" onChange={ this.handleChange } name="user" placeholder="Login" />
