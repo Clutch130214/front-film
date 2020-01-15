@@ -5,6 +5,7 @@ const getCategory = idCategory => {
         case "3" : return "romance"
         case "4" : return "policier"
         case "5" : return "comedie"
+        case "6" : return "film d\'animation"
         default : return ""
     }
 }

@@ -8,6 +8,7 @@ module.exports = {
         { id: 2, name: 'fiction', label: 'Science-Fiction' },
         { id: 3, name: 'romance', label: 'Romance' },
         { id: 4, name: 'policier', label: 'Policier' },
-        { id: 5, name: 'comedie', label: 'Comédie' }
+        { id: 5, name: 'comedie', label: 'Comédie' },
+        { id: 6, name: 'animation', label: 'Animation' }
     ]
 }

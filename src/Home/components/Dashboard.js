@@ -80,7 +80,7 @@ class Dashboard extends Component {
           </div>
         </div>
         :
-        <div style={{ textAlign: 'center', paddingTop: '100px', color: 'white'}}>
+        <div style={{ textAlign: 'center', paddingTop: '100px'}}>
             <FontAwesomeIcon icon={this.state.noneIcon} size="4x" />
             <h1>{this.state.noneTitle}</h1>
         </div>
@@ -165,6 +165,7 @@ class Dashboard extends Component {
                           <NavDropdown.Item onClick={() => this.setCategory(this.findCategory(3))} eventKey="3">Romance</NavDropdown.Item>
                           <NavDropdown.Item onClick={() => this.setCategory(this.findCategory(4))} eventKey="4">Policier</NavDropdown.Item>
                           <NavDropdown.Item onClick={() => this.setCategory(this.findCategory(5))} eventKey="5">Comédie</NavDropdown.Item>
+                          <NavDropdown.Item onClick={() => this.setCategory(this.findCategory(6))} eventKey="6">Animation</NavDropdown.Item>
                         </NavDropdown>
                       </Fragment>}
                     </Nav>
