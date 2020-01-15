@@ -9,11 +9,11 @@ const rootReducer = combineReducers({
     ActeursReducer
 })
 
-const AppStore = createStore (rootReducer, {
-    SeriesReducer : SeriesReducerStore,
-    FilmsReducer : FilmsReducerStore,
-    ActeursReducer : ActeursReducerStore,
-    }
+const AppStore = createStore(rootReducer, {
+    SeriesReducer: SeriesReducerStore,
+    FilmsReducer: FilmsReducerStore,
+    ActeursReducer: ActeursReducerStore,
+}
 )
 
 export default AppStore

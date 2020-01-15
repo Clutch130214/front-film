@@ -10,7 +10,7 @@ class Login extends Component {
       show: false,
       user: '',
       password: '',
-      alertMode : 'wait',
+      alertMode: 'wait',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -37,59 +37,59 @@ class Login extends Component {
     )
   }
 
-  Wait(){
+  Wait() {
     return (
-      <div style={{ textAlign: 'center' }}>
-          <div>
-            <div className="spinner-border m-5" role="status">
-              <span className="sr-only">Loading...</span>
-            </div>
+      <div style={ { textAlign: 'center' } }>
+        <div>
+          <div className="spinner-border m-5" role="status">
+            <span className="sr-only">Loading...</span>
           </div>
         </div>
+      </div>
     )
   }
 
   Alert() {
-    switch(this.state.alertMode){
+    switch (this.state.alertMode) {
       case 'error': return this.Error()
       case 'wait': return this.Wait()
-      default : return this.Wait()
+      default: return this.Wait()
     }
   }
 
 
   handleFormSubmit(e) {
     e.preventDefault();
-    this.setState({ show: true, alertMode: 'wait'});
-    this.Auth.login(this.state.user,this.state.password)
-        .then(res => {
-           this.props.history.replace('/');
-        })
-        .catch(err => {
-            this.setState({ show: true, alertMode: 'error'});
-        })
-}
+    this.setState({ show: true, alertMode: 'wait' });
+    this.Auth.login(this.state.user, this.state.password)
+      .then(res => {
+        this.props.history.replace('/');
+      })
+      .catch(err => {
+        this.setState({ show: true, alertMode: 'error' });
+      })
+  }
 
-componentWillMount(){
-  if(this.Auth.loggedIn())
+  componentWillMount() {
+    if (this.Auth.loggedIn())
       this.props.history.replace('/');
-}
+  }
 
   render() {
     return (
-    <form className="simple-login-container" onSubmit={this.handleFormSubmit}>
-      <h2 className="display-2 text-light">Connexion</h2>
+      <form className="simple-login-container" onSubmit={ this.handleFormSubmit }>
+        <h2 className="display-2 text-light">Connexion</h2>
         <div className="row">
           <div className="col-md-12 form-group">
-            <input type="text" className="form-control" onChange={this.handleChange} name="user" placeholder="Login"/>
+            <input type="text" className="form-control" onChange={ this.handleChange } name="user" placeholder="Login" />
           </div>
         </div>
         <div className="row">
           <div className="col-md-12 form-group">
-            <input type="password" className="form-control" onChange={this.handleChange} name="password" placeholder="Mot de passe"/>
+            <input type="password" className="form-control" onChange={ this.handleChange } name="password" placeholder="Mot de passe" />
           </div>
         </div>
-        {this.state.show && this.Alert()}
+        { this.state.show && this.Alert() }
         <div className="row">
           <div className="col-md-12 text-center">
             <div className="btn-group">
@@ -98,7 +98,7 @@ componentWillMount(){
             </div>
           </div>
         </div>
-    </form>
+      </form>
     );
   };
 }

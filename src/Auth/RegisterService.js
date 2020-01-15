@@ -8,7 +8,7 @@ export default class RegisterService {
     }
 
     register(lastName, firstName, login, password, age) {
-        return this.fetch(`${this.domain}/users`, {
+        return this.fetch(`${ this.domain }/users`, {
             method: 'POST',
             body: JSON.stringify({
                 lastName,

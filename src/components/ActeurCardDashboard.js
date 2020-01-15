@@ -5,19 +5,19 @@ import '../css/ActeurCardDashboard.css';
 
 class ActeurCard extends Component {
 
-  getActorImage(){
+  getActorImage() {
     return (
       <div>
-        <img src={this.props.obj.url} className='card-img-actor rounded-0' alt='...'/>
-        <h6 className='card-text text-center text-light bg-primary'>{this.props.obj.prenom} {this.props.obj.nom}</h6>
-    </div>
+        <img src={ this.props.obj.url } className='card-img-actor rounded-0' alt='...' />
+        <h6 className='card-text text-center text-light bg-primary'>{ this.props.obj.prenom } { this.props.obj.nom }</h6>
+      </div>
     )
   }
 
   render() {
     return (
       <div className="Card">
-        {this.getActorImage()}
+        { this.getActorImage() }
       </div>
     )
   }

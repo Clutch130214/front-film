@@ -2,8 +2,8 @@ import {
     RECEIVE_ALL_ACTEURS
 } from './ActeursConstants'
 import ApplicationConf from '../conf/ApplicationConf'
-import * as APIConfig from '../conf/APIConfig'
 import AppStore from '../store/AppStore.js'
+import MailAction from '../Mailing/MailAction'
 
 
 const ActeursAction = {
@@ -12,25 +12,17 @@ const ActeursAction = {
         return { type: RECEIVE_ALL_ACTEURS, acteurs }
     },
 
-    promiseActeurs() {
-        return fetch(
-            ApplicationConf.acteur.getAll(),
-            {
-                method: 'GET',
-                headers: APIConfig.HEADERS,
-            },
-        )
-    },
-
-    fetchActeurs(callback = () => {}) {
+    fetchActeurs(callback = () => { }) {
         fetch(ApplicationConf.acteur.getAll())
-        .then((result) => {
-          return result.json();
+            .then((result) => {
+                return result.json();
             })
-            .then ((response) => {
+            .then((response) => {
                 AppStore.dispatch(ActeursAction.receiveActeurs(response.acteurs))
                 callback()
-            })
+            }).catch(err =>
+                MailAction.sendMail("sur les Acteurs", err.message)
+            )
     },
 }
 

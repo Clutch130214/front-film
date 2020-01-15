@@ -16,31 +16,33 @@ class FilmDashboard extends Component {
     this.state = {
       film: [],
       acteurs: []
+    }
   }
-}
 
-handleLogout(){
-  Auth.logout()
-  this.props.history.replace('/login');
-}
+  handleLogout() {
+    Auth.logout()
+    this.props.history.replace('/login');
+  }
 
-componentWillMount() {
-  FilmsAction.fetchFilm(this.props.match.params.id, () => {
-    ActeursAction.fetchActeurs(() => {
-      this.setState({ acteurs : AppStore.getState().FilmsReducer.film.acteur_list.map( al => {
-        return AppStore.getState().ActeursReducer.acteurs.find( a => a.id === al.id )
+  componentWillMount() {
+    FilmsAction.fetchFilm(this.props.match.params.id, () => {
+      ActeursAction.fetchActeurs(() => {
+        this.setState({
+          acteurs: AppStore.getState().FilmsReducer.film.acteur_list.map(al => {
+            return AppStore.getState().ActeursReducer.acteurs.find(a => a.id === al.id)
+          })
         })
       })
-    })
-    this.setState({  film: AppStore.getState().FilmsReducer.film, dataLoaded: true })}
+      this.setState({ film: AppStore.getState().FilmsReducer.film, dataLoaded: true })
+    }
     )
-}
+  }
 
-getActeurList() {
-  return this.state.acteurs.map( a => {
-      return <ActeurCardDashboard obj={a}/>
-  })
-}
+  getActeurList() {
+    return this.state.acteurs.map(a => {
+      return <ActeurCardDashboard obj={ a } />
+    })
+  }
 
   render() {
     return (
@@ -49,47 +51,47 @@ getActeurList() {
           <div className="row justify-content-md-center navStyle">
             <nav className="col-md-9 col-xs-9">
               <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
-                  <Navbar.Brand href="/">SuperFilm</Navbar.Brand>
-                  <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
-                  <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="ml-auto">
+                <Navbar.Brand href="/">SuperFilm</Navbar.Brand>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                  <Nav className="ml-auto">
                     <ButtonToolbar>
-                            <OverlayTrigger
-                              trigger="click"
-                              key={'bottom'}
-                              placement={'bottom'}
-                              overlay={
-                                <Popover id={`popover-positioned-${'bottom'}`}>
-                                  <Button variant="outline-danger" onClick={this.handleLogout.bind(this)}>Se déconnecter</Button>
-                                </Popover>
-                              }
-                              >
-                              <Button variant="info">Connecté en tant que {localStorage.getItem('login')}</Button>
-                            </OverlayTrigger>
+                      <OverlayTrigger
+                        trigger="click"
+                        key={ 'bottom' }
+                        placement={ 'bottom' }
+                        overlay={
+                          <Popover id={ `popover-positioned-${ 'bottom' }` }>
+                            <Button variant="outline-danger" onClick={ this.handleLogout.bind(this) }>Se déconnecter</Button>
+                          </Popover>
+                        }
+                      >
+                        <Button variant="info">Connecté en tant que { localStorage.getItem('login') }</Button>
+                      </OverlayTrigger>
                     </ButtonToolbar>
-                    </Nav>
-                  </Navbar.Collapse>
-                </Navbar>
+                  </Nav>
+                </Navbar.Collapse>
+              </Navbar>
             </nav>
           </div>
         </header>
         <div className="margin-card-top">
           <div className="row justify-content-md-center">
-          <div className="col-md-9 col-xs-9">
-            <div className='card mb-3 h-60 border border-primary'>
-              <div className='row no-gutters'>
-                <div className='col-md-2'>
-                  <img src={this.state.film.url} className='card-img img-responsive' alt='...'/>
-                </div>
-                <div className='col-md-10'>
-                  <div className='card-body'>
-                    <h5 className='card-title'>{this.state.film.nom}</h5>
-                    <p className='card-text'>{this.state.film.description}</p>
+            <div className="col-md-9 col-xs-9">
+              <div className='card mb-3 h-60 border border-primary'>
+                <div className='row no-gutters'>
+                  <div className='col-md-2'>
+                    <img src={ this.state.film.url } className='card-img img-responsive' alt='...' />
+                  </div>
+                  <div className='col-md-10'>
+                    <div className='card-body'>
+                      <h5 className='card-title'>{ this.state.film.nom }</h5>
+                      <p className='card-text'>{ this.state.film.description }</p>
                     </div>
                   </div>
                 </div>
                 <div className="card-group row no-gutters pt-1">
-                  {this.getActeurList()}
+                  { this.getActeurList() }
                 </div>
               </div>
             </div>
@@ -102,7 +104,7 @@ getActeurList() {
 
 FilmDashboard.propTypes = {
   params: PropTypes.shape({
-      id: PropTypes.number,
+    id: PropTypes.number,
   }),
 }
 

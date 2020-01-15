@@ -15,7 +15,7 @@ export function SeriesReducer(state = {}, action) {
             console.log(action)
             return {
                 ...state,
-                series: action.series.map( serie => new SeriesDto(serie))
+                series: action.series.map(serie => new SeriesDto(serie))
             }
         case RECEIVE_SERIE:
             console.log(action)

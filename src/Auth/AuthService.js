@@ -10,7 +10,7 @@ export default class AuthService {
     }
 
     login(user, password) {
-        return this.fetch(`${this.domain}/login`, {
+        return this.fetch(`${ this.domain }/login`, {
             method: 'POST',
             body: JSON.stringify({
                 user,

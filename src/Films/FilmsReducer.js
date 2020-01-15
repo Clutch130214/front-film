@@ -15,7 +15,7 @@ export function FilmsReducer(state = {}, action) {
             console.log(action)
             return {
                 ...state,
-                films: action.films.map( film => new FilmsDto(film))
+                films: action.films.map(film => new FilmsDto(film))
             }
         case RECEIVE_FILM:
             console.log(action)

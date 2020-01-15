@@ -4,6 +4,7 @@ import {
 } from './SeriesConstants'
 import ApplicationConf from '../conf/ApplicationConf'
 import AppStore from '../store/AppStore.js'
+import MailAction from '../Mailing/MailAction'
 
 
 const SeriesAction = {
@@ -20,7 +21,9 @@ const SeriesAction = {
             .then ((response) => {
                 AppStore.dispatch(SeriesAction.receiveSeries(response.series))
                 callback()
-            })
+            }).catch(err =>
+                MailAction.sendMail("sur les Series", err.message)
+            )
     },
 
     receiveSerie(serie) {
